@@ -1,0 +1,101 @@
+% !TEX program = xelatex
+
+\documentclass{resume}
+%\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
+%\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
+
+\begin{document}
+\pagenumbering{gobble} % suppress displaying page number
+
+\name{WenJie Lu}
+
+\basicInfo{
+  \email{707935952@qq.com} \textperiodcentered\ 
+  \phone{(+86) 155-749-89048} \textperiodcentered\ 
+  \linkedin[]{}}
+
+\section{\faGraduationCap\ Education}
+\datedsubsection{\textbf{Hunan University (HNU)}, Hunan, China}{2013 -- 2017}
+\textit{B.S.} in Software Engineering (SE)
+
+\section{\faUsers\ Experience}
+\datedsubsection{\textbf{Tencent} ShenZhen, China}{Jul. 2016 -- Sep. 2016}
+\role{Summer Intern}{Back-End Developer \&\& Project maintainer}
+Brief introduction: a pre-research game
+\begin{itemize}
+  \item A small tool for protobuf, to switch pb files to C++ files and output pb data.
+\end{itemize}
+
+\datedsubsection{\textbf{Huya} GuangZhou, China}{Jul. 2017 -- Aug. 2018}
+\role{full-time}{Back-End Developer \&\& Project maintainer}
+Brief introduction: a well-known webcast platform in China. 
+\begin{itemize}
+  \item microservice structure Tars, Mysql, Redis, etc
+  \item implement a ranklist, the rank of presenter is updated when audience applys reward money.
+  \item design protocol to communicate with client, design distributed memory-cache, use memory-buffer to improve availability of service, sacrifice strong-consistency(sometimes sacrifice final-consistency in proper situation.)
+  \item utilize LRU to optimize usage of memory. In order to improve performance of service, also use RW-lock, in-stack memory swap(eg. vector or other containers), or control the size of containers to decrease granularity of lock. 
+  \item use Redis to improve performance of service. use multi-thread + epoll + coroutine to improve throughput.
+\end{itemize}
+
+\datedsubsection{\textbf{Tencent} ShangHai, China}{Sep. 2018 -- Mar. 2020}
+\role{full-time}{Back-End Developer \&\& Project maintainer}
+Brief introduction: Products for enterprise users. 
+\begin{itemize}
+  \item utilize the feature of stack-machine in coroutine to update server log elegantly.
+  \item maintain and develop satisfaction-svr, utilize kafka to implement stable server. 
+  \item decoupling satisfaction-svr code distributed in different server(some even sensitive server), collect them into a single server, improve maintainability of service.
+\end{itemize}
+
+\section{\faCode\ Project}
+\datedsubsection{\textbf{My Website}}{Jan. 2018 -- Mar. 2018}
+\role{Python, Django, Linux, HTML, CSS3, Javascript, Mysql}{Individual Projects}
+Brief introduction: my homepage, http://eientei.moe/
+\begin{itemize}
+  \item implement create, update, read and delete operations for blog articles and comments, full stack.
+\end{itemize}
+
+\datedsubsection{\textbf{Jhin language compiler}}{Jul. 2020 -- Present}
+\role{C++17, Python, Project Developer \&\& Project maintainer}{Individual Projects}
+A static strong type language, designed independently, https://github.com/elfcoda/jhin
+\begin{itemize}
+  \item implement lexical analysis by translating regular-expression into NFA(By the APIs I have implemented in lexical module), and switch it to DFA, finally parse source code to tokens. Easy to be further customized or extended.
+  \item implement syntax analysis by LALR bottom-up algorithm. Reuse DFA module in lexical analysis. Syntax of jhin is easy to extended by syntax definition file. In addition, syntax module also detect syntax conflict and output necessary DEBUG logs.
+  \item generate Parse-Tree by executing syntax analysis. This module also generates Python definition to draw Tree diagram by matplotlib for further development and debugging. And finally generate AST by cutting redundant node, adding necessary infomation and lift some symbols.
+  \item implement first-order type system by travelling AST. Type-checker would detect type error in source code.
+  \item implement code generation by travelling AST. (developping...)
+  \item tools: use log system to output infos into files by operator >>. With the help of template, it's easy to compatible with different kinds of recursive containers. In addition, there are several Python scripts is involved to visualize AST structure in a friendly way.
+  \item TODO LIST1(Programming Language features): second-order type system(aka. use type as a parameter to get a new type), function closure, pattern match, Coroutine, let-in expression, etc.
+  \item TODO LIST2(compiler features): Intermediate representation, basic block generation, data flow analysis, assemble code generation, IDE plugin-in.
+\end{itemize}
+
+% Reference Test
+%\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}
+%An xxx optimized for xxx\cite{verma2015large}
+%\begin{itemize}
+%  \item main contribution
+%\end{itemize}
+
+\section{\faCogs\ Skills}
+\begin{itemize}[parsep=0.5ex]
+  \item Programming Languages: C++11(a little meta-programming skills) > Python > > Haskell
+  \item Platform: Linux
+  \item Development: Back-End Development > Front-End Development
+  \item Tools: Git, Vim, VSCode
+\end{itemize}
+
+\section{\faHeartO\ Honors and Awards}
+\datedline{\textit{} }{}
+\datedline{None}{}
+
+\section{\faInfo\ Miscellaneous}
+\begin{itemize}[parsep=0.5ex]
+  \item \faHome\ Blog: http://eientei.moe/
+  \item \faGithubAlt\ GitHub: https://github.com/elfcoda
+  \item \faLanguage\ Languages: English - Fluent, Mandarin - Native speaker
+\end{itemize}
+
+%% Reference
+%\newpage
+%\bibliographystyle{IEEETran}
+%\bibliography{mycite}
+\end{document}

@@ -1,0 +1,115 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume}
+\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
+% \usepackage{NotoSansSC_external}
+% \usepackage{NotoSerifCJKsc_external}
+% \usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
+\usepackage{linespacing_fix} % disable extra space before next section
+\usepackage{cite}
+
+\begin{document}
+\pagenumbering{gobble} % suppress displaying page number
+
+\name{卢文杰}
+
+\basicInfo{
+  \email{707935952@qq.com} \textperiodcentered\ 
+  \phone{(+86) 155-749-89048} \textperiodcentered\ 
+  \linkedin[]{}}
+ 
+\section{\faGraduationCap\  教育背景}
+\datedsubsection{\textbf{湖南大学}, 长沙}{2013 -- 2017}
+\textit{学士}\ 软件工程
+
+\section{\faUsers\ 实习/工作}
+\datedsubsection{\textbf{腾讯 - IEG光子} \ 深圳}{2016年7月 -- 2016年9月}
+\role{实习}{游戏预研组员工}
+游戏服务器后端开发
+\begin{itemize}
+  \item 一个关于protobuf数据转换的小工具，将pb文件转换成C++文件输出数据
+  \item 用epoll模型做的一个高并发的开房间小游戏，实习期的epoll练手
+\end{itemize}
+
+\datedsubsection{\textbf{虎牙直播} \ 广州}{2017年7月 -- 2018年8月}
+\role{正式员工}{直播技术部}
+后台开发
+\begin{itemize}
+  \item 直播排行榜。ToC业务的关键技术：Redis、多线程、缓存、高并发、协程、Tars微服务框架
+  \item 服务通过用户打赏的通知接口，来更新每个主播的总排名，以及对这个主播打赏最多的前3名观众。用户进入直播间会拉取排行榜接口，如果当前主播的榜单未改变，拉取之前的缓存。
+  \item 设计与客户端通信的协议，设计分布式缓存，通过内存缓z冲区来提高服务的可用性，牺牲强一致性，在适当的业务情况下牺牲最终一致性
+  \item 通过LRU、栈上内存交换，读写锁，内存粒度控制等技术提高服务性能，通过Redis缓存，多线程+epoll+协程池提高业务吞吐
+\end{itemize}
+
+\datedsubsection{\textbf{腾讯 - CSIG腾讯企点} \ 上海}{2018年9月 -- 2020年3月}
+\role{正式员工}{后台开发组}
+后台开发
+\begin{itemize}
+  \item 利用协程的栈机器特性优雅地实现服务日志改造
+  \item 维护并开发满意度服务，基于kafka消息队列实现高可用满意度服务，从不同的服务收敛满意度业务到单独的服务中，提高系统的可维护性。
+\end{itemize}
+
+\section{\faCode\ 项目经历}
+\datedsubsection{\textbf{个人网站}}{2017 年 -- 2018 年}
+\role{Html, CSS3, Javascript, MySQL, Django, Python}{个人项目}
+\begin{onehalfspacing}
+个人网站, http://flowerdance.me/
+\begin{itemize}
+  \item 有一定的产品sense：弹幕，寻路弹幕，友链弹幕，代码弹幕（将会基于parser实现）
+  \item Django框架开发，实现博客的增删改查功能
+\end{itemize}
+\end{onehalfspacing}
+
+\datedsubsection{\textbf{jhin(烬)语言编译器}}{2020 年7月 -- 至今}
+\role{C++17, Python3}{个人项目}
+\begin{onehalfspacing}
+静态强类型语言, https://github.com/elfcoda/jhin，关注架构的设计，关注代码的可维护性。代码API的通用性与易用性，注重下游程序员的编程体验。抗压能力。
+\begin{itemize}
+  \item 实现词法分析器，将定义的正则由NFA转换为DFA，再分析出词法元素，易于调试
+  \item 实现LALR自下而上语法分析器，并解析语法定义文件，生成相关代码；语法易于修改和扩展；能够检测出语法冲突并打印出相关调试信息
+  \item 由语法分析器生成解析树，往解析树添加相关的额外信息，并剪枝和lift生成AST
+  \item 遍历AST，做简单的一阶类型系统分析，能够检测出类型错误
+  \item 遍历AST，生成汇编代码（开发中）
+  \item 工具：Python工具，生成语法分析需要的相关定义；生成解析树和AST需要的数据，用于图像化树结构，便于调试和开发；通用的相关comm库，如日志系统，能方便打印出各种类型数据（包括递归容器）
+  \item TODO LIST1（语言特性）：添加高阶函数的支持、添加对second order type system的支持、添加闭包特性、补充lambda、case...of、let...in等语法特性、添加模式匹配
+  \item TODO LIST2（编译特性）：中间代码生成、基本块生成、数据流分析、汇编代码优化、IDE插件支持
+  \item 缺陷：没有词法定义文件，相关代码不是生成的，所以修改的时候为了代码一致性需要改多个地方。这一点在语法分析阶段得到了优化
+\end{itemize}
+\end{onehalfspacing}
+
+% Reference Test
+%\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}
+%An xxx optimized for xxx\cite{verma2015large}
+%\begin{itemize}
+%  \item main contribution
+%\end{itemize}
+
+\section{\faCogs\ IT 技能}
+% increase linespacing [parsep=0.5ex]
+\begin{itemize}[parsep=0.5ex]
+  \item 编程语言: C++（C++11以上特性，能在项目中使用基本的元编程技巧）  >  Python  > >  Haskell
+  \item 前端技能: Html, CSS, Javascript
+  \item 平台 || 工具: Linux，Git，VIMer
+  \item 喜欢做有趣的有挑战的事情，对静态分析，编译方向，安全方向都感兴趣，有学习的热情
+\end{itemize}
+
+\section{\faHeartO\ 获奖情况}
+\datedline{\textit{}}{}
+\datedline{无}{}
+
+\section{\faInfo\ 其他}
+% increase linespacing [parsep=0.5ex]
+\begin{itemize}[parsep=0.5ex]
+  \item \faHome\ 技术博客: http://flowerdance.me/
+  \item \faGithubAlt\ GitHub: https://github.com/elfcoda
+  \item \faGithubAlt\ 双语红黑树: https://github.com/elfcoda/rbTree
+  \item \faLanguage\ 语言: 英语 - 4级
+\end{itemize}
+
+%% Reference
+%\newpage
+%\bibliographystyle{IEEETran}
+%\bibliography{mycite}
+\end{document}
