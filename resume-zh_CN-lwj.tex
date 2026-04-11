@@ -27,56 +27,74 @@
 \section{\faCogs\ IT 技能}
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.5ex]
-  \item 编程语言: C++（C++11以上特性，能在项目中使用基本的元编程技巧）  >  Python  > >  Haskell
-  \item 前端技能: Html, CSS, Javascript
-  \item 工具: Git，Vim
-  \item 能够从零开始设计并实现简单的编程语言，并利用LLVM实现优化的后端代码
-  \item 了解分布式数据库TiDB的设计与实现
-  \item 了解CPU的基本工作原理和优化技巧，对从上层（应用层）到底层（CPU级别）的优化都有一定的了解
-  \item 由于严格的Code Review，对代码质量有较高的追求
-  \item 喜欢做有趣的有挑战的事情，对静态分析，编译方向，安全方向，性能优化都感兴趣，有学习的热情
+  \item 编程语言:  C++ 20，Python，C\#，Haskell
+  \item 前端技能: Ethers，Html，CSS，Javascript，React，DotNet
+  \item 了解Uniswap V3和V4新特性，以及V3通过移除流动性的限价单的原理 。
+  \item 熟悉DEX套利机制原理，了解MEV原理及防范，了解无常损失等概念，了解女巫行为的检测方法（物理硬件检测，相似点检测，行为检测，tx的拓扑检测）
+  \item 对Web3充满激情, 有持续学习的动力, 对Web3的未来有信心
+  \item Code Review严格, 对代码质量有较高的追求
+  \item 能够从零开始设计并实现简单的编程语言, 并利用LLVM实现优化的后端代码，并粗略读过Solidity的编译前端源码
+  \item 技术广度大，对TiDB分布式数据库，CPU原理和优化，静态分析，编译方向，安全方向，性能优化感兴趣
 \end{itemize}
 
-\section{\faUsers\ 实习/工作}
-\datedsubsection{\textbf{腾讯 - IEG光子} \ 深圳}{2016年7月 -- 2016年9月}
-\role{实习}{游戏预研组员工}
-游戏服务器后端开发
-\begin{itemize}
-  \item 一个关于protobuf数据转换的小工具，将pb文件转换成C++文件输出数据
+\section{\faCogs\ 未来计划}
+% increase linespacing [parsep=0.5ex]
+\begin{itemize}[parsep=0.5ex]
+  \item 补充：
 \end{itemize}
 
-\datedsubsection{\textbf{虎牙直播} \ 广州}{2017年7月 -- 2018年8月}
-\role{正式员工}{直播技术部}
-后台开发
+\section{\faCode\ AI实践}
+\datedsubsection{\textbf{ERC20}}{2024年}
+\role{ERC20代币}{个人项目}
+\begin{onehalfspacing}
 \begin{itemize}
-  \item 直播排行榜。ToC业务的关键技术：Redis、多线程、缓存、高并发、协程、Tars微服务框架
-  \item 服务通过用户打赏的通知接口，来更新每个主播的总排名，以及对这个主播打赏最多的前3名观众。用户进入直播间会拉取排行榜接口，如果当前主播的榜单未改变，拉取之前的缓存。
-  \item 设计与客户端通信的协议，设计分布式缓存，通过内存缓z冲区来提高服务的可用性，牺牲强一致性，在适当的业务情况下牺牲最终一致性
-  \item 通过LRU、栈上内存交换，读写锁，内存粒度控制等技术提高服务性能，通过Redis缓存，多线程+epoll+协程池提高业务吞吐
+  \item 使用hardhat + openzeppelin在以太坊sepolia测试网发布ERC20合约T1和T2，并在sepolia.etherscan.io上verify。
+\end{itemize}
+\end{onehalfspacing}
+
+\section{\faUsers\ 工作(已精简和AI无关的经历)}
+\datedsubsection{\textbf{九坤 - 交易实现部} \ 上海}{2023年10月 -- 2024年1月}
+\role{正式员工}{市场接入}
+交易系统开发
+\begin{itemize}
+  \item 开发交易系统，连接交易上游和券商，通过开发SDK，将券商柜台接入内部系统。
+\end{itemize}
+
+\datedsubsection{\textbf{微软 - CMD-MMD} \ 苏州}{2020年12月 -- 2023年9月}
+\role{正式员工}{后端开发 - 后台开发}
+\begin{itemize}
+  \item 与西雅图团队合作，参与设计并实现UpdateManagement服务，利用Azure上Cosmos全球高可用缓存数据库，FunctionApp等组件，做前端请求到后端服务的转发与缓存，避免流量过大导致请求失败超时，多地部署在北美，欧洲等数据中心。
 \end{itemize}
 
 \datedsubsection{\textbf{腾讯 - CSIG腾讯企点} \ 上海}{2018年9月 -- 2020年3月}
-\role{正式员工}{后台开发组}
-后台开发
+\role{正式员工}{后台开发组 - 后台开发}
 \begin{itemize}
   \item 利用协程的栈机器特性优雅地实现服务日志改造
   \item 维护并开发满意度服务，基于kafka消息队列实现高可用满意度服务，从不同的服务收敛满意度业务到单独的服务中，提高系统的可维护性。
 \end{itemize}
 
-\datedsubsection{\textbf{微软 - CMD-MMD} \ 苏州}{2020年12月 -- 至今}
-\role{正式员工}{后端开发}
-后台开发
+\datedsubsection{\textbf{虎牙直播} \ 广州}{2017年7月 -- 2018年8月}
+\role{正式员工}{直播技术部 - 后台开发}
 \begin{itemize}
-  \item 与西雅图团队合作，参与设计并实现UpdateManagement服务，利用Azure上Cosmos全球高可用缓存数据库，FunctionApp等组件，做前端请求到后端服务的转发与缓存，避免流量过大导致请求失败超时，多地部署在北美，欧洲等数据中心。
+  \item 服务通过用户打赏的通知接口，来更新每个主播的排名。
+  \item 直播排行榜。ToC业务的关键技术：Redis、多线程、缓存、高并发、协程、Tars微服务框架
+  \item 通过LRU、栈上内存交换，读写锁，内存粒度控制等技术提高服务性能，通过Redis缓存，多线程+协程池提高业务吞吐
+\end{itemize}
+
+\section{\faUsers\ 实习}
+\datedsubsection{\textbf{腾讯 - IEG光子} \ 深圳}{2016年7月 -- 2016年9月}
+\role{实习}{游戏预研组员工 - 游戏服务器后端开发}
+\begin{itemize}
+  \item 一个关于protobuf数据转换的小工具，将pb文件转换成C++文件输出数据
 \end{itemize}
 
 \section{\faCode\ 项目经历}
 \datedsubsection{\textbf{个人网站}}{2017 年 -- 2018 年}
 \role{Html, CSS3, Javascript, MySQL, Django, Python}{个人项目}
 \begin{onehalfspacing}
-个人网站, http://flowerdance.me/
+个人网站, http://flowerdance.me/（目前已下线，代码在https://github.com/elfcoda/Nekko0）
 \begin{itemize}
-  \item 有一定的产品sense：弹幕，寻路弹幕，友链弹幕，代码弹幕（将会基于parser实现），有较好用户体验
+  \item 有一定的产品sense：弹幕, 代码弹幕（将会基于parser实现），有较好用户体验
   \item Django框架开发，实现博客的增删改查功能
 \end{itemize}
 \end{onehalfspacing}
@@ -93,8 +111,7 @@
   \item 遍历AST，使用LLVM生成Mac平台优化的汇编代码，并能够无缝链接C函数库
   \item 提供对应简单的VsCode语法插件：https://github.com/elfcoda/Ashe-lang-support，实现语法高亮等功能
   \item 工具：Python工具，生成语法分析需要的相关定义；生成解析树和AST需要的数据，用于图像化树结构，便于调试和开发；通用的相关comm库，如日志系统，能方便打印出各种类型数据（包括递归容器）
-  \item 缺陷：没有词法定义文件，相关代码不是生成的，所以修改的时候为了代码一致性需要改多个地方。这一点在语法分析阶段得到了优化
-\end{itemize}
+  \end{itemize}
 \end{onehalfspacing}
 
 % Reference Test
@@ -107,7 +124,6 @@
 \section{\faInfo\ 其他}
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.5ex]
-  \item \faHome\ 技术博客: http://flowerdance.me/
   \item \faGithubAlt\ GitHub: https://github.com/elfcoda
 \end{itemize}
 
