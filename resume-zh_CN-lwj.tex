@@ -24,52 +24,54 @@
 \datedsubsection{\textbf{湖南大学}, 长沙}{2013 -- 2017}
 \textit{学士}\ 软件工程
 
-\section{\faCogs\ AI 技能（2026年2 ～ 3月学习算法，3～4月学习infra）}
+\section{\faCogs\ AI 技能（2026年1 ～ 2月学习算法，3～4月学习infra）}
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.5ex]
-  \item 说明：对以下描述：实现过 > 深入理解 > 理解(熟悉) > 了解 > 接触过（熟悉程度统一向下取舍）
+  \item 说明：对以下描述：实现过 > 深入理解 > 理解(熟悉) > 了解
   \item 编程语言:  C++ 17（模板），Rust，Python，C\#
   \item 前端技能: Html，CSS，Javascript，React
-  \item 算法：熟悉LLama transformer主流架构的各个组件，配合AI推导过大部分的数学原理，有较好的数学和物理几何直觉。包括优化器，mha/mqa/gqa/mla，rope，ffn，残差连接，层归一化等组件的原理。例如：对奇异值或mHC有几何上的理解。对adamW，ffn有几何，物理，数学等多个角度的理解。
-  \item 算法：理解pyTorch下的transformer实现细节，本地训练过小规模模型，了解训练的流程和细节。理解动态计算图的原理。
+  \item ........................................................................分割线（算法）........................................................................
+  \item 算法：熟悉LLama transformer主流架构的各个组件，配合AI推导过大部分的数学原理，有较好的数学和物理几何直觉。理解优化器，mha/mqa/gqa/mla，rope，ffn，残差连接，层归一化等组件的原理。例如：对奇异值或mHC有几何上的理解。对adamW，ffn有几何，物理，数学等多个角度的理解。
+  \item 算法：理解pyTorch下的transformer实现细节，本地训练过小规模模型，了解训练的流程和细节。理解动态计算图的原理。能对简单3层网络交叉熵反向传播梯度推导。
   \item 算法：理解loRa，ppo，sft等训练方法的原理和实现细节。理解强化学习基本原理和数学推导。
-  \item 算法：理解UNet跳跃连接，Stable Diffusion的原理和实现细节，在本地小规模训练过。以及扩散语言（DiffusionLM）模型的算法原理【已中断相关学习】
+  \item 算法：理解UNet跳跃连接，Stable Diffusion的原理和实现细节，在本地小规模训练过。
   \item 算法：理解engram记忆组件的原理和实现demo，HC和mHC相关残差连接原理。
+  \item ........................................................................分割线（Infra）........................................................................
   \item 工程：理解CPU和GPU的一致性和计算差异，对不同的cache层级有认知。
-  \item 工程（cuda算子）：深刻理解deepseek flashMLA的dense decode kernal在Hopper架构下的演化细节，包括计算流水线代码对比最初版的设计改进。以及flash 计算的细节。
-  \item 工程（cuda算子）：深刻理解mla的sparse quant decode kernal在Blackwell架构下的计算流水线和极致的优化细节。包括不限于SMEM，TMA，TMEM，Double Buffer以及复杂的barrier设计和warp组分工等细节。理解kv cache结构在SM里的设计细节。对kernel里面的大部分代码都能知道对应的硬件和优化行为。理解kernel流水线设计背后的动机。
-  \item 工程（cuda算子）：对Blackwell架构下的主要组件（repo里用到的）都能深入了解细节以及设计原理。了解昇腾910的达芬奇架构。
-  \item 工程（RDMA）：了解RDMA的原理和实现细节，了解相关的协议和技术，能够做出简单demo。【TODO：如未完成将移除此条】
+  \item 工程（cuda算子）：深刻理解deepseek flashMLA的dense decode kernal在Hopper架构下的演化细节，包括计算流水线代码对比最初版的设计改进。以及online flash 计算的细节。
+  \item 工程（cuda算子）：深刻理解deepseek flashMLA的sparse quant decode paged-kv kernal在Blackwell架构下的计算流水线和极致的优化细节。包括不限于SMEM，TMA，TMEM，Double Buffer以及复杂的barrier设计和warp组分工，编译期计算等细节。理解kv cache结构在SM里的设计细节。对kernel里面的大部分代码都能知道对应的硬件和优化行为。理解kernel流水线设计背后的动机。
+  \item 工程（cuda算子）：对Blackwell架构下的主要组件（mla里用到的）都能深入了解细节以及设计原理。能读懂PTX代码。初步了解昇腾910的达芬奇架构。
 
-  \item 编译：能够设计自定义语法, 并使用C++17配合模板元编程，手写编译器实现，利用LLVM生成后端代码。能看懂汇编代码。
-  \item 编译：理解基础的静态分析原理，理解triton编译器里mlir的层级以及主要pass对ptx的优化细节，对软硬件结合有较好认知。理解编译器前端和后端的优化细节。包括不限于循环展开，内联，向量化，寄存器分配算法，SSA，LICM，谓词掩码与分支预测等优化细节。
+  \item 编译：能够设计自定义语法, 并使用C++17配合模板元编程，手写编译器实现，利用LLVM生成后端代码。能看懂汇编代码。（https://github.com/elfcoda/jhin）
+  \item 编译：理解基础的静态分析原理，理解triton编译器里mlir的层级以及主要pass对ptx的优化细节，对软硬件结合有较好认知。理解编译器前端和后端的优化细节。包括不限于循环展开，内联，向量化，寄存器分配算法以及在MLA里的应用，SSA，LICM，谓词掩码与分支预测等优化细节。理解浮点数的设计原理。
   
+  \item ........................................................................分割线（其他）........................................................................
   \item 应用：了解Coding Agent开源项目，使用python sitter进行精确语法树分析的agent方法，以及各个agent组件和完整的agent处理代码流程。【TODO：如未完成将移除此条】
 
   \item 其他：Code Review严格, 对代码质量有较高的追求
   \item 其他：跨领域学习能力强，能够跨量化（交易）/Web3/编译器/算法和cuda等方向深入学习。
   \item 其他：对技术细节能够深入底层，对算法原理能够思考算法灵感的来源和设计的初衷
   
-  \item 其他（AGI）：在早期学习中开始探索transformer标准外的agi可能的实现路径。认为需要有真推理能力，所以探索基于高维精确语义在空间里的持续学习和推理能力，如一阶推理、二阶推理等。后来了解到神经符号在做类似的事情。但是现实世界搜索空间太大，所以做了coding agent相关研究（有限世界沙盒）。同时做了双曲空间（庞加莱球）算子开发。【TODO：如未完成将移除此条】
+  \item 其他（AGI）：在早期学习中开始探索transformer标准外的agi可能的实现路径。认为需要有真推理能力，所以探索基于高维精确语义在空间里的持续学习和推理能力，如一/二阶推理等。后来了解到神经符号在做类似的事情。但是现实世界搜索空间太大，所以做了coding agent相关研究（有限世界沙盒）。同时做了双曲空间（庞加莱球）算子开发。【TODO：如未完成将移除此条】
 \end{itemize}
 
 \section{\faCogs\ 求职偏好}
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.5ex]
-  \item 偏向cuda高性能算子相关方向，正在接触vLLM等开源项目，同时也有意愿接触RDMA等其他具有高挑战性的ai方向，能够在一个难题上保持持续的耐心。有意愿接触昇腾等国产架构，做有长期主义的事。
+  \item 偏向cuda高性能算子相关方向，正在接触vLLM等开源项目，同时也有意愿接触RDMA等其他具有高挑战性的ai方向，能够在一个难题上保持持续的耐心。不排斥接触昇腾等国产架构，做有长期主义的事。
 \end{itemize}
 
 \section{\faCode\ AI实践}
-\datedsubsection{\textbf{双区空间算子开发}}{2026年}
+\datedsubsection{\textbf{双区空间算子开发【TODO：研究中，如未完成将移除此项】}}{2026年}
 \role{算子开发}{个人项目}
 \begin{onehalfspacing}
 \begin{itemize}
-  \item 使用庞加莱球空间设计了一个新的算子，能够在高维空间里进行精确的语义计算，来探索AGI可能的实现路径。算子设计灵感来源于人类大脑的神经结构和功能，结合了神经网络和符号推理的优势，能够在有限的计算资源下实现高效的推理和学习能力。
+  \item AGI的一个可能方向是神经符号。神经符号领域依赖知识图谱，用其做关系投影。但是数据的增长是指数级，而在平坦空间里，容量的增长是多项式级，关系投影会有较大的拥挤和误差，从而会需要更多维度的数据来表示。基于此，探索了在双曲空间（庞加莱球）里做关系投影的算子设计和实现，通过在双曲空间适配知识图谱的指数级增长，来减少数据表达的维度。同时在算子层面做工程优化（需举例）达到更高的计算效率。
 \end{itemize}
 \end{onehalfspacing}
 
 \section{\faUsers\ 工作(已精简和AI无关的经历)}
-\datedsubsection{\textbf{binQuant - defi组} \ remote}{2024年7月 -- 2025年8月}
+\datedsubsection{\textbf{binQuant - defi组} \ Remote(Web3)}{2024年7月 -- 2025年8月}
 \role{正式员工}{Defi开发}
 Defi系统开发
 \begin{itemize}
