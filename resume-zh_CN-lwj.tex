@@ -100,7 +100,17 @@ Defi系统开发
   \item 前端: 设计专用的前端画布控制台，用户的输入分为一个个模块的小decision，和主入口需求输入，这些输入会进入queue等待系统不断处理并生成后续的decision。
   \item 属性控制：对某些module或代码由特定需求，如安全策略，代码风格，通过前端快速设置，http接口发送给后段设置module 的属性和prompt拼接。
   \item 其他功能：context压缩和长短期记忆拼接。code searching(处理后台长搜索任务的优化)
+  \item 项目demo和设计说明：https://github.com/elfcoda/agent-demo
 
+  \end{itemize}
+\end{onehalfspacing}
+
+\datedsubsection{\textbf{聪明钱搜索}}{2025年}
+\role{Rust}{个人项目}
+\begin{onehalfspacing}
+探索链上的聪明钱模式
+\begin{itemize}
+  \item 链上的聪明资金有多种模式，这里探索的是KOL资金模式。通过获取链上多个dex的swap行为并整合，可以预处理得到每个token pool的swap字段。kol跟单模式的规则是：kol喊单之后，会有follower在一定时间内同步下单，拉高价格。所以pool里有KolAddr和FollowersAddr，这里使用bloom filter对地址bit化后，搜索多pool里同时包含多个相同地址的模式。
   \end{itemize}
 \end{onehalfspacing}
 
