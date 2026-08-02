@@ -28,18 +28,14 @@
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.5ex]
   \item 编程语言:  C++ 17（模板），Rust，Python，C\#
-  \item 前端技能: Html，CSS，Javascript，React
+  \item 前端技能: Html，React
   \item ........................................................................（ai coding）........................................................................
   \item 研究过若干ai coding agent的相关开源实现，并基于此开发decision first coding agent(详见后面项目描述)。用bm25，基于AST片段的向量embedding，静态分析的call graph，做联合权重的代码rag搜索。
-  \item ........................................................................（算法）........................................................................
-  \item 算法：熟悉LLama transformer主流架构的各个组件，配合AI推导过大部分的数学原理，有较好的数学和物理几何直觉。理解优化器，mha/mqa/gqa/mla，rope，ffn，残差连接，层归一化等组件的原理。例如：对奇异值或mHC有几何上的理解。对adamW，ffn有几何，物理，数学等多个角度的理解。
-  \item 算法：理解pyTorch下的transformer实现细节，本地训练过小规模模型，了解训练的流程和细节。理解动态计算图的原理。能对简单3层网络交叉熵反向传播梯度推导。
-  \item 算法：了解UNet跳跃连接，Stable Diffusion的原理和实现细节。
+  \item 算法：熟悉LLama transformer主流架构的各个组件，配合AI推导过大部分的数学原理，有较好的数学和物理几何直觉。理解mha/mqa/gqa/mla，rope，ffn，残差连接，层归一化等组件的原理。
+  \item 算法：了解pyTorch，理解动态计算图的原理。能对简单3层网络交叉熵反向传播梯度推导。
   \item ........................................................................（Infra）........................................................................
   \item 工程：理解CPU和GPU的一致性和计算差异，对不同的cache层级有认知。
-  \item 工程（cuda算子）：理解deepseek flashMLA的dense decode kernal在Hopper架构下的演化细节，包括计算流水线代码对比最初版的设计改进。以及online flash 计算的细节。
-  \item 工程（cuda算子）：理解deepseek flashMLA的sparse quant decode paged-kv kernal在Blackwell架构下的计算流水线和极致的优化细节。包括不限于SMEM，TMA，TMEM，Double Buffer以及barrier设计和warp组分工。理解kv cache结构在SM里的设计。对kernel里面的主要代码都能知道对应的硬件和优化行为。
-
+  \item 工程（cuda算子）：理解deepseek flashMLA的dense decode kernal在Hopper和Blackwell架构下的演化细节，包括计算流水线代码对比最初版的设计改进。以及online flash 计算的细节。
   \item 编译：能够设计自定义语法, 并使用C++17配合模板元编程，手写编译器实现，利用LLVM生成后端代码。（https://github.com/elfcoda/jhin）
   \item 编译：理解基础的静态分析原理，理解编译器前端和后端的优化细节。包括不限于循环展开，内联，向量化，寄存器分配算法以及在MLA里的应用，SSA，LICM，谓词掩码与分支预测等优化细节。
   
@@ -49,7 +45,7 @@
 \end{itemize}
 
 \section{\faUsers\ 工作}
-\datedsubsection{\textbf{binQuant - defi组} \ Remote(Web3)}{2024年7月 -- 2025年8月}
+\datedsubsection{\textbf{binQuant - defi组} \ 上海(Web3)}{2024年7月 -- 2025年8月}
 \role{正式员工}{Defi开发}
 Defi系统开发
 \begin{itemize}
@@ -88,23 +84,6 @@ Defi系统开发
 
 \section{\faCode\ 项目经历}
 
-\datedsubsection{\textbf{decision first coding agent(AI)}}{2026年}
-\role{Python3}{个人项目}
-\begin{onehalfspacing}
-项目基于一个基本逻辑：一个特化的项目不可能一句话生成，而是由人不断的去做决策和修改最后形成。所以对比目前的chat-first多轮对话的coding agent（human in loop）, 这里提出新的decision first agent范式。新范式把一个项目分成确定性的可ai生成的代码和非确定性的需要人decision的功能（根据置信度），agent会block所有需要decision的代码直到人去做出decision，为了提高decision的效率，agent把项目按模块划分不同的module agent，这样就能高度并行不断生成小decision。对比传统的二层agent架构，这里演化出多module的3层agent。同时系统的输入不再是对话框，而是专用的前端控制台，用户的输入分为一个个模块的小decision，和主入口需求输入，这些输入会持续进入queue等待系统不断处理并生成后续的decision。也就是说，整个repo是由前端decision和输入的需求驱动的。
-\begin{itemize}
-  \item tool: 相比于传统的代码检索需要多轮搜索需要的代码片段，代码tool使用以下技术：1. 基于静态分析的代码搜索策略（call graph rag），可以一次性搜索出相关代码。2. 使用bm25检索相关的代码片段。3. 基于AST语义片段的本地小模型向量embedding。基于以上联合搜索再使用权重rerank，来实现更高效的代码搜索。
-  \item agent: 重新设计coding agent的交互模式。系统角色是3层agent架构，顶层core agent负责所有流程(包含project agent)的管理，每个module由一个project agent管理，project agent是个2层 agent架构，可以使用tool spawn新的sub agent执行具体子任务。每个module的project agent是个tool call loop，同时core agent也是个派发任务的tool call loop。
-  \item multi-agent治理流程：从前端收到请求后，会放进后段队列由core agent统一调度。每个module 的project agent是个单独的进程，和core agent使用进程间通信做派发任务和结果返回。core接受队列的请求后拆解任务派发给不同的module 进程，每个module进程接收到请求后，由3个异步模块开启处理：0. main process： 从msg queue里逐个pop请求，不断发布task给agent loop使用。并阻塞等待响应后发给core。 1. msg queue，用来接收core发来的多个消息请求，以及处理decision的阻塞 2. agent loop，接收queue的msg后，agent loop调用tool call loop处理 ，包括spawn subagent，decision tool。3. subagent单独处理的后台任务，完成后统一返回给父agent。
-  \item decision tool：当agent loop检测到需要user decision的时候，会block当前module的agent loop并由core agent转发给前端的决策系统。前端反馈后解除block并继续执行。
-  \item 前端: 设计专用的前端画布控制台，用户的输入分为一个个模块的小decision，和主入口需求输入，这些输入会进入queue等待系统不断处理并生成后续的decision。
-  \item 属性控制：对某些module或代码由特定需求，如安全策略，代码风格，通过前端快速设置，http接口发送给后段设置module 的属性和prompt拼接。
-  \item 其他功能：context压缩和长短期记忆拼接。code searching(处理后台长搜索任务的优化)
-  \item 项目demo和设计说明：https://github.com/elfcoda/agent-demo
-
-  \end{itemize}
-\end{onehalfspacing}
-
 \datedsubsection{\textbf{聪明钱搜索}}{2025年}
 \role{Rust}{个人项目}
 \begin{onehalfspacing}
@@ -126,6 +105,24 @@ Defi系统开发
   \item 遍历AST，使用LLVM生成Mac平台优化的汇编代码，并能够无缝链接C函数库
   \item 提供对应简单的VsCode语法插件：https://github.com/elfcoda/Ashe-lang-support，实现语法高亮等功能
   \item 工具：Python工具，生成语法分析需要的相关定义；生成解析树和AST需要的数据，用于图像化树结构，便于调试和开发；通用的相关comm库，如日志系统，能方便打印出各种类型数据（包括递归容器）
+  \end{itemize}
+\end{onehalfspacing}
+
+
+\datedsubsection{\textbf{decision first coding agent(AI)}}{2026年}
+\role{Python3}{个人项目}
+\begin{onehalfspacing}
+项目基于一个基本逻辑：一个特化的项目不可能一句话生成，而是由人不断的去做决策和修改最后形成。所以对比目前的chat-first多轮对话的coding agent（human in loop）, 这里提出新的decision first agent范式。新范式把一个项目分成确定性的可ai生成的代码和非确定性的需要人decision的功能（根据置信度），agent会block所有需要decision的代码直到人去做出decision，为了提高decision的效率，agent把项目按模块划分不同的module agent，这样就能高度并行不断生成小decision。对比传统的二层agent架构，这里演化出多module的3层agent。同时系统的输入不再是对话框，而是专用的前端控制台，用户的输入分为一个个模块的小decision，和主入口需求输入，这些输入会持续进入queue等待系统不断处理并生成后续的decision。也就是说，整个repo是由前端decision和输入的需求驱动的。
+\begin{itemize}
+  \item tool: 相比于传统的代码检索需要多轮搜索需要的代码片段，代码tool使用以下技术：1. 基于静态分析的代码搜索策略（call graph rag），可以一次性搜索出相关代码。2. 使用bm25检索相关的代码片段。3. 基于AST语义片段的本地小模型向量embedding。基于以上联合搜索再使用权重rerank，来实现更高效的代码搜索。
+  \item agent: 重新设计coding agent的交互模式。系统角色是3层agent架构，顶层core agent负责所有流程(包含project agent)的管理，每个module由一个project agent管理，project agent是个2层 agent架构，可以使用tool spawn新的sub agent执行具体子任务。每个module的project agent是个tool call loop，同时core agent也是个派发任务的tool call loop。
+  \item multi-agent治理流程：从前端收到请求后，会放进后段队列由core agent统一调度。每个module 的project agent是个单独的进程，和core agent使用进程间通信做派发任务和结果返回。core接受队列的请求后拆解任务派发给不同的module 进程，每个module进程接收到请求后，由3个异步模块开启处理：0. main process： 从msg queue里逐个pop请求，不断发布task给agent loop使用。并阻塞等待响应后发给core。 1. msg queue，用来接收core发来的多个消息请求，以及处理decision的阻塞 2. agent loop，接收queue的msg后，agent loop调用tool call loop处理 ，包括spawn subagent，decision tool。3. subagent单独处理的后台任务，完成后统一返回给父agent。
+  \item decision tool：当agent loop检测到需要user decision的时候，会block当前module的agent loop并由core agent转发给前端的决策系统。前端反馈后解除block并继续执行。
+  \item 前端: 设计专用的前端画布控制台，用户的输入分为一个个模块的小decision，和主入口需求输入，这些输入会进入queue等待系统不断处理并生成后续的decision。
+  \item 属性控制：对某些module或代码由特定需求，如安全策略，代码风格，通过前端快速设置，http接口发送给后段设置module 的属性和prompt拼接。
+  \item 其他功能：context压缩和长短期记忆拼接。code searching(处理后台长搜索任务的优化)
+  \item 项目demo和设计说明：https://github.com/elfcoda/agent-demo
+
   \end{itemize}
 \end{onehalfspacing}
 
